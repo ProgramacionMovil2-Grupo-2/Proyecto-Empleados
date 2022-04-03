@@ -9,6 +9,8 @@ const Stack = createNativeStackNavigator();
 import inicio from './src/componentes/inicio';
 import personas from './src/componentes/personas';
 import usuarios from './src/componentes/usuarios';
+import categoria from './src/componentes/categoria';
+import categoriaMostrar from './src/componentes/categoriaMostrar';
 
 
 const Tab = createBottomTabNavigator();
@@ -35,6 +37,16 @@ export default function Navigation() {
                  <Stack.Screen
                     name="usuarios"
                     component={usuarios}
+                   
+                />
+                 <Stack.Screen
+                    name="categoria"
+                    component={categoria}
+                   
+                />
+                 <Stack.Screen
+                    name="categoriaMostrar"
+                    component={categoriaMostrar}
                    
                 />
                

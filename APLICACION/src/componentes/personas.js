@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 
 
+
 import "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator();
@@ -109,10 +110,10 @@ export default function App({ navigation }) {
         <View style={styles.contenedorTitulo}>
           <Text style={styles.titulo}>MÓDULO DE PERSONAS</Text>
           <TouchableOpacity  style={{ marginLeft: -380, marginTop: -32}} onPress={() => navigation.navigate('inicio')}>
-          <Text>
-         
-          <AntDesign name='caretleft'  style={{ fontSize: 25}}/>
-            </Text>
+          <View>
+            <Feather name='arrow-left' style={{ fontSize: 25 }}
+            />
+          </View>
           </TouchableOpacity>
           
          

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, TouchableOpacity,Image, ScrollView } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import "react-native-gesture-handler";
@@ -126,10 +127,10 @@ export default function App({ navigation }) {
         <View style={styles.contenedorTitulo}>
           <Text style={styles.titulo}>MÓDULO DE USUARIOS</Text>
           <TouchableOpacity  style={{ marginLeft: -380, marginTop: -32}} onPress={() => navigation.navigate('inicio')}>
-          <Text>
-         
-          <AntDesign name='caretleft'  style={{ fontSize: 25}}/>
-            </Text>
+          <View>
+            <Feather name='arrow-left' style={{ fontSize: 25 }}
+            />
+          </View>
           </TouchableOpacity>
         </View>
 

@@ -44,7 +44,7 @@ export default function App({ navigation }) {
  </TouchableOpacity >
 
  <TouchableOpacity style={styles.OpCarrito}
-   onPress={() => navigation.navigate('Productos')}
+   onPress={() => navigation.navigate('categoria')}
  >
  <Text style={styles.tituloBoton2}>CATEGORIAS</Text>
  </TouchableOpacity >
