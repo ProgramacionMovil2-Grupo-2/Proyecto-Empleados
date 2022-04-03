@@ -1,8 +1,14 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, Image, ScrollView } from 'react-native';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, Text, View, TextInput, Button, Alert, TouchableOpacity,Image, ScrollView } from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import "react-native-gesture-handler";
 
-export default function usuarios() {
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export default function App({ navigation }) {
     const [id_personas, setIdPersonas] = useState(null);
     const [login, setLogin] = useState(null);
     const [correo, setCorreo] = useState(null);
@@ -19,7 +25,7 @@ export default function usuarios() {
         }else{
             try {
                 const respuesta = await fetch(
-                    'http://192.168.1.2:4001/api/usuarios/guardarUsuario',{
+                    'http://192.168.1.42:4001/api/usuarios/guardarUsuario',{
                         method: 'POST',
                         headers:{
                             accept: 'application/json',
@@ -119,6 +125,12 @@ export default function usuarios() {
       <View style={styles.contenedorLogin}>
         <View style={styles.contenedorTitulo}>
           <Text style={styles.titulo}>MÓDULO DE USUARIOS</Text>
+          <TouchableOpacity  style={{ marginLeft: -380, marginTop: -32}} onPress={() => navigation.navigate('inicio')}>
+          <Text>
+         
+          <AntDesign name='caretleft'  style={{ fontSize: 25}}/>
+            </Text>
+          </TouchableOpacity>
         </View>
 
         <View style={[styles.contenedorControles, styles.sombraControles]}>

@@ -1,13 +1,10 @@
-import react from "react";
 
-import Login from "./src/componentes/personas";
-
+import Navigation from "./Navigation";
 
 export default function App() {
   return (
+    <Navigation></Navigation>
    
-    <Login></Login>
-    //Pedido></Pedido>
   
   );
 }

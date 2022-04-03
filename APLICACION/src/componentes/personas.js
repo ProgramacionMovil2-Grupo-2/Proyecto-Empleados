@@ -1,8 +1,18 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, Image, ScrollView } from 'react-native';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, Text, View, Button,FlatList, ActivityIndicator, TouchableOpacity, Pressable, ImageComponent,Image, TextInput} from 'react-native';
+import Feather from 'react-native-vector-icons/Feather';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-export default function personas() {
+
+
+import "react-native-gesture-handler";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export default function App({ navigation }) {
     const [identidad, setIdentidad] = useState(null);
     const [nombre, setNombre] = useState(null);
     const [apellido, setApellido] = useState(null);
@@ -98,8 +108,22 @@ export default function personas() {
       <View style={styles.contenedorLogin}>
         <View style={styles.contenedorTitulo}>
           <Text style={styles.titulo}>MÓDULO DE PERSONAS</Text>
+          <TouchableOpacity  style={{ marginLeft: -380, marginTop: -32}} onPress={() => navigation.navigate('inicio')}>
+          <Text>
+         
+          <AntDesign name='caretleft'  style={{ fontSize: 25}}/>
+            </Text>
+          </TouchableOpacity>
+          
+         
+          
+ 
+         
+         
         </View>
 
+       
+       
         <View style={[styles.contenedorControles, styles.sombraControles]}>
           <View style={styles.controles}>
           <Text style={styles.textinput}>   Id:</Text>
