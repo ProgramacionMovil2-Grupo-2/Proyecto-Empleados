@@ -84,7 +84,7 @@ export default function App({ navigation }) {
  <Text style={styles.tituloBoton2}>SUCURSALES</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
-   onPress={() => navigation.navigate('sucursales')}
+   onPress={() => navigation.navigate('compras')}
  >
     <View>
   <Feather name='shopping-cart' style={{ fontSize: 45, marginLeft: -130}}/>

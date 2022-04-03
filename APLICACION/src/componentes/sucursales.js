@@ -24,7 +24,7 @@ export default function App({ navigation }) {
   const guardar = async () => {
     if (!ciudad || !direccion || !telefono) {
       console.log("Escriba los datos completos");
-      Alert.alert("FACTURA", "Escriba los datos completos");
+      Alert.alert("ALERTA", "Escriba los datos completos");
     } else {
       try {
         const respuesta = await fetch(
@@ -38,16 +38,19 @@ export default function App({ navigation }) {
             ciudad: ciudad,
             direccion: direccion,
             telefono: telefono
+            
           })
         });
-      //  const json = await respuesta.json();
-       // console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+        //const json = await respuesta.json();
+        //console.log(json);
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
         Alert.alert("ALERTA", "Petición procesada");
       }
     }
   }
+
+
 
   const modificar = async () => {
     if (!id || !ciudad || !direccion || !telefono) {

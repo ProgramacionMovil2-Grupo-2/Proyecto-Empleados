@@ -15,6 +15,7 @@ import proveedores from './src/componentes/proveedores';
 import login from './src/componentes/login';
 import registrar from './src/componentes/registro';
 import sucursales from './src/componentes/sucursales';
+import compras from './src/componentes/compras';
 
 const Tab = createBottomTabNavigator();
 
@@ -70,6 +71,11 @@ export default function Navigation() {
                    <Stack.Screen
                     name="sucursales"
                     component={sucursales}
+                   
+                />
+                   <Stack.Screen
+                    name="compras"
+                    component={compras}
                    
                 />
                
