@@ -16,6 +16,7 @@ import login from './src/componentes/login';
 import registrar from './src/componentes/registro';
 import sucursales from './src/componentes/sucursales';
 import compras from './src/componentes/compras';
+import detallecompras from './src/componentes/detalleCompras';
 
 const Tab = createBottomTabNavigator();
 
@@ -78,6 +79,12 @@ export default function Navigation() {
                     component={compras}
                    
                 />
+                   <Stack.Screen
+                    name="detallecompras"
+                    component={detallecompras}
+                   
+                />
+               
                
                  
                  

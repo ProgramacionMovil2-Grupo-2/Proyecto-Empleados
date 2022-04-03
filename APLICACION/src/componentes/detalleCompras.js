@@ -12,44 +12,48 @@ const Tab = createBottomTabNavigator();
 
 export default function App({ navigation }) {
   const [id, setid] = useState(null);
-  const [idProveedor, setidProveedor] = useState(null);
-  const [fecha, setfecha] = useState(null);
+  const [idCompra, setidCompra] = useState(null);
+  const [idProducto, setidProducto] = useState(null);
+  const [precioCompra, setprecioCompra] = useState(null);
+  const [cantidad, setcantidad] = useState(null);
 
 
-  const guardarCompra = async() =>{
-    if(!idProveedor || !fecha){
+  const guardarDetalleCompra = async() =>{
+    if(!idCompra || !idProducto || !precioCompra || !cantidad){
       console.log("Escriba los datos completos");
       Alert.alert("ALERTA", "Escriba los datos completos");
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.1.42:4001/api/compras/guardarCompras',{
+            'http://192.168.101.9:4001/api/detallecompra/guardarDetalleCompras',{
             method: 'POST',
               headers:{
                   accept: 'application/json',
                           'Content-Type':'application/json'
                       },
                       body: JSON.stringify({
-                          idProveedor: idProveedor,
-                          fecha: fecha
+                          idCompra: idCompra,
+                          idProducto: idProducto,
+                          precioCompra: precioCompra,
+                          cantidad: cantidad,
                       })
                   });
-                  console.log("Datos Compra Guardado");
-                  Alert.alert("AVISO", "Datos Compra Almacenado");
+                  console.log("Datos Detalle Compra Guardado");
+                  Alert.alert("AVISO", "Datos Detalle Compra Almacenado");
           } catch (error) {
               console.error(error);
           }
       }
   }
 
-  const modificarCompra = async() =>{
-    if(!idProveedor || !fecha){
+  const modificarDetalleCompra = async() =>{
+    if(!idCompra || !idProducto || !precioCompra || !cantidad){
       console.log("Escriba los datos completos");
       Alert.alert("ALERTA", "Escriba los datos completos");
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.1.42:4001/api/compras/modificarCompras?id='+id,{
+            'http://192.168.101.9:4001/api/detallecompra/modificarDetalleCompras?id='+id,{
             method: 'PUT',
               headers:{
                   accept: 'application/json',
@@ -57,26 +61,28 @@ export default function App({ navigation }) {
                       },
                       body: JSON.stringify({
                           id: id,
-                          idProveedor: idProveedor,
-                          fecha: fecha
+                          idCompra: idCompra,
+                          idProducto: idProducto,
+                          precioCompra: precioCompra,
+                          cantidad: cantidad,
                       })
                   });
-                  console.log("Datos Compra Modificado");
-                  Alert.alert("AVISO", "Datos Compra Modificado");
+                  console.log("Datos Detalle Compra Modificado");
+                  Alert.alert("AVISO", "Detalle Compra Modificado");
           } catch (error) {
               console.error(error);
           }
       }
   }
 
-  const eliminarCompra = async() =>{
+  const eliminarDetalleCompra = async() =>{
     if(!id){
       console.log("Escriba los datos completos");
       Alert.alert("ALERTA", "Escriba los datos completos");
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.1.42:4001/api/compras/eliminarCompras?id='+id,{
+            'http://192.168.101.9:4001/api/detallecompra/eliminarDetalleCompras?id='+id,{
             method: 'DELETE',
               headers:{
                   accept: 'application/json',
@@ -86,8 +92,8 @@ export default function App({ navigation }) {
                           id: id
                       })
                   });
-                  console.log("Datos Compra Eliminado");
-                  Alert.alert("AVISO", "Datos Compra Eliminado");
+                  console.log("Datos Detalle Compra Eliminado");
+                  Alert.alert("AVISO", "Detalle Compra Eliminado");
           } catch (error) {
               console.error(error);
           }
@@ -98,8 +104,8 @@ export default function App({ navigation }) {
     <View style={styles.contenedor}>
       <View style={styles.contenedorLogin}>
         <View style={styles.tilOp}>
-            <Text style={styles.ti}>MÓDULO DE COMPRAS</Text>
-            <TouchableOpacity  style={{ marginLeft: 20, marginTop: -50}} onPress={() => navigation.navigate('inicio')}>
+            <Text style={styles.ti}>DETALLE COMPRAS</Text>
+            <TouchableOpacity  style={{ marginLeft: 20, marginTop: -50}} onPress={() => navigation.navigate('compras')}>
           <View>
             <Feather name='arrow-left' style={{ fontSize: 25 }}
             />
@@ -116,50 +122,56 @@ export default function App({ navigation }) {
               style={styles.entradas}
             >
             </TextInput>
-            <Text style={styles.titulos}>   idProveedor:</Text>
+            <Text style={styles.titulos}>   idCompra:</Text>
             <TextInput
-            value={idProveedor}
-            onChangeText= {setidProveedor}
+            value={idCompra}
+            onChangeText= {setidCompra}
               placeholder="Ej. 1"
               style={styles.entradas}
-            >
-            </TextInput>
-            <Text style={styles.titulos}>   fecha:</Text>
+            ></TextInput>
+            <Text style={styles.titulos}>   idProducto:</Text>
             <TextInput
-            value={fecha}
-            onChangeText= {setfecha}
-              placeholder="Ej. 2020-02-01"
+            value={idProducto}
+            onChangeText= {setidProducto}
+              placeholder="Ej. 1"
               style={styles.entradas}
-            >
-            </TextInput>
+            ></TextInput>
+            <Text style={styles.titulos}>   precioCompra:</Text>
+            <TextInput
+            value={precioCompra}
+            onChangeText= {setprecioCompra}
+              placeholder="Ej. 20.50"
+              style={styles.entradas}
+            ></TextInput>
+            <Text style={styles.titulos}>   cantidad:</Text>
+            <TextInput
+            value={cantidad}
+            onChangeText= {setcantidad}
+              placeholder="Ej. 5"
+              style={styles.entradas}
+            ></TextInput>
           </View>
+          <View style={styles.botones}>
           <View style={styles.botonRedes}>
               <Button
                 title="REGISTRAR" color={"#0D7701"} 
-                onPress={guardarCompra}>
+                onPress={guardarDetalleCompra}>
               </Button>
           </View>
           <View style={styles.botonRedes2}>
               <Button 
-                title="MODIFICAR" color={"#3A6C96"} 
-                onPress={modificarCompra}>
+                title="MODIFICAR" color={"#3A6C96"}
+                onPress={modificarDetalleCompra}>
               </Button>
           </View>
           <View style={styles.botonRedes3}>
               <Button 
-                title="ELIMINAR" color={"#D51104"} 
-                onPress={eliminarCompra}>
+                title="ELIMINAR" color={"#D51104"}
+                onPress={eliminarDetalleCompra}>
               </Button>
           </View>
-          <TouchableOpacity style={styles.OpCompras}
-   onPress={() => navigation.navigate('detallecompras')}
- >
-    <View>
-  <Feather name='trello' style={{ fontSize: 45, marginLeft: -100}}/>
- </View>
- <Text style={[styles.tituloBoton2,{ fontSize: 20}]}>DETALLE COMPRAS</Text>
- </TouchableOpacity >
-         
+          </View>
+          
         </View>
       </View>
     </View>
@@ -173,15 +185,17 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     paddingTop: 30,
     position: "relative",
-    top: -65,
-    height: 70
+    height: 70,
+    top: -70
   },
   ti: {
-    color: "#FFFFFF" ,
+    alignContent: "center",
+    alignItems: "center",
     fontSize: 30,
-    fontWeight: "700",
-    left: 80,
-    top: -20
+    color: "#FFFFFF",
+    marginLeft: 40,
+    top: -15,
+    left: 60
   },
   image: {
     alignItems: 'center',
@@ -206,21 +220,9 @@ const styles = StyleSheet.create({
     height: '80%',
     width: '100%',
   },
-  contenedorTitulo: {
-    flexDirection:"column",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop:-0,
-    marginVertical:20,
-    height:60,
-  },
-  contenedorLogo: {
-    flexDirection:"column",
-    alignItems: "center",
-    justifyContent:"center",
-  },
   contenedorControles: {
     flex: 3,
+    height: 200,
     flexDirection:"column",
     alignItems: "stretch",
     justifyContent:"center",
@@ -234,74 +236,40 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
-  tituloLogin: {
-      color: "#FFFFFF" ,
-      fontSize: 40,
-      fontWeight: "700",
-    },
-    titulos: {
-      color: "#020604" ,
-      fontSize: 18,
-    },
-    titulos2: {
-      color: "#FFFFFF" ,
-      fontSize: 18,
-      fontWeight: "700",
-    },
+  titulos: {
+    color: "#020604" ,
+    fontSize: 18,
+  },
   controles:{
-    flex:4,
+    //flex:4,
     //backgroundColor: "#29291f",
     marginBottom: 20,
-    paddingTop:30,
-    paddingVertical:30,
-    top:-90
+    top: -25,
+    paddingTop: 80,
+    paddingVertical:30
   },
-  contenedorBotones:{
-    flex:1,
-    padding: 10,
-    justifyContent:"space-evenly",
-    flexDirection: "row",
-  },
-  contenedorBotonesRedes:{
-    flex:2,
-    padding: 10,
-    justifyContent:"space-evenly",
-    flexDirection: "column",
-  },
-  boton:{
-    flex:1,
+  botones:{
     alignItems:"stretch",
+    marginTop: -150,
     marginLeft:10,
     marginRight:10,
   },
   botonRedes:{
-    //flex:1,
-    top: 90,
+    top: 110,
     height: 100,
     alignItems:"stretch",
-    //margin:5,
     borderRadius: 55,
   },
   botonRedes2:{
-    //flex:1,
-    top: 40,
+    top: 55,
     height: 100,
     alignItems:"stretch",
   },
   botonRedes3:{
-    //flex:1,
-    top: -10,
-    height: 100,
-    alignItems:"stretch",
-  },
-  botonRedes4:{
-    //flex:1,
-    top: 80,
     height: 100,
     alignItems:"stretch",
   },
   entradas:{
-    //flex:1,
     alignItems:"stretch",
     margin:7,
     padding:10,
@@ -313,19 +281,5 @@ const styles = StyleSheet.create({
     borderStyle:"solid",
     borderColor: "#ced4da",
     borderRadius: 15,
-  },
-  OpCompras: {
-    flexDirection: "row",
-     width:'100%',
-     height: 60,
-    marginTop: 20,
-    left:0,
-     alignContent: "center",
-     justifyContent: "center",
-     alignItems: "center",
-     borderRadius: 40,
-     backgroundColor: '#FFFFFF',
-     position: "relative",
-     top: 40,
-    },
+  }
 });
