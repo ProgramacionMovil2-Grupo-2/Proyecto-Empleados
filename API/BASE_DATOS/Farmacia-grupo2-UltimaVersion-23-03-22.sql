@@ -1,7 +1,7 @@
 -- Base de datos Grupo 2
 -- Fecha creacion: 23/03/2022
 
-CREATE database Farmacia_Grupo2;
+create database Farmacia_Grupo2;
 USE Farmacia_Grupo2;
 -- -----------------------------------------------------
 -- Table `Farmacia`.`proveedores`
@@ -284,10 +284,17 @@ insert into tipos (descripcion) values ('Cicatrizantes'),('Analgesico'),('Vitami
 
 insert into Personas ( identidad,nombre,apellido,edad,telefono,rtn,direccion,estado,imagen,tipo) 
 values('0318200402610','Sandra','Calderon','21','33668853',null,'Siguatepeque',true,null,'EM'),
-('1212200100016','Daniela','Vasquez','21','99999999',null,'Marcala',true,null,'EM');
+('1212200100016','Daniela','Vasquez','21','99999999',null,'Marcala',true,null,'EM'),
+('1111111111111','ADMIN','ADMIN','21','99999999',null,'Desconocido',true,null,'EM'),
+('0310200100100','Carlos','Flores','25','99012345',null,'Siguatepeque',true,null,'EM');
 
-insert into Personas ( identidad,nombre,apellido,edad,telefono,rtn,direccion,estado,imagen,tipo) 
-values('0310200100100','Carlos','Flores','25','99012345',null,'Siguatepeque',true,null,'EM');
+insert into Usuarios (id_personas,login,correo,contrasena,estado,pin) values 
+('1','Sandra','sandra21jackelin@gmail.com','12345678','1','1234'),
+('2','Daniela','danielamejia405@gmail.com','12345678','1','1234'),
+('3','Admin','admin@gmail.com','12345678','1','1234');
+
+select * from Usuarios
+
 
 insert into Productos (nombre,fechavencimiento,codigobarras,descripcion, impuesto, precio,idtipo,imagen, estado) values
  ('Neobol2','2022-01-11','1000001',null,'15','190','1','http://localhost:4001/usuario/img/img-1648009386154-989785856image.jpeg','1'),

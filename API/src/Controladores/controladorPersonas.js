@@ -98,6 +98,42 @@ exports.modificar = async(req, res) => {
     }
 };
 
+exports.modificarEliminar = async(req, res) => {
+    console.log(req.query);
+    console.log(req.body);
+    const { id } = req.query;
+    const validacion = validationResult(req);
+    if(!validacion.isEmpty()){
+        res.json(validacion.array());
+    }else{
+        const { estado } = req.body;
+        if(!id){
+            res.send("Enviar los datos completos");
+        }else{
+            var buscarPersonas = await ModeloPersona.findOne({
+                where:{
+                    id: id
+                }
+            });
+            if(!buscarPersonas){
+                res.send("El id no existe");
+            }else{
+                buscarPersonas.estado=0;
+                
+                await buscarPersonas.save()
+                .then((data)=>{
+                    console.log(data);
+                    res.send("Registro actualizado");
+                })
+                .catch((error)=>{
+                    console.log(error);
+                    res.send("Error al actualizar los datos");
+                })
+            }
+        }
+    }
+};
+
 exports.eliminar = async(req, res) => {
     const { id } = req.query;
     if(!id){

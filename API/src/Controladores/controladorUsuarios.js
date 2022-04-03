@@ -1,5 +1,5 @@
 
-const ModeloUsuario = require('../modelos/modeloUsuarios');
+const ModeloUsuario = require('../Modelos/modeloUsuarios');
 const { validationResult } = require('express-validator');
 
 exports.listarUsuarios = async(req, res) => {
@@ -88,6 +88,42 @@ exports.modificarUsuario = async(req, res) => {
                 buscarUsuarios.contrasena=contrasena;
                 buscarUsuarios.estado=estado;
                 buscarUsuarios.pin=pin;
+
+                await buscarUsuarios.save()
+                .then((data)=>{
+                    console.log(data);
+                    res.send("Registro actualizado");
+                })
+                .catch((error)=>{
+                    console.log(error);
+                    res.send("Error al actualizar los datos");
+                })
+            }
+        }
+    }
+};
+exports.modificarEliminar = async(req, res) => {
+    console.log(req.query);
+    console.log(req.body);
+    const { id } = req.query;
+    const validacion = validationResult(req);
+    if(!validacion.isEmpty()){
+        res.json(validacion.array());
+    }else{
+        const { estado } = req.body;
+        if(!id){
+            res.send("Enviar los datos completos");
+        }else{
+            var buscarUsuarios = await ModeloUsuario.findOne({
+                where:{
+                    id: id
+                    //estado:'1'
+                }
+            });
+            if(!buscarUsuarios){
+                res.send("El id no existe");
+            }else{
+                buscarUsuarios.estado="INACTIVO";
 
                 await buscarUsuarios.save()
                 .then((data)=>{

@@ -15,4 +15,7 @@ body('nombre').isLength({min:3}).withMessage('El nombre de la persona debe tener
 body('apellido').isLength({min:3}).withMessage('El apellido de la persona debe tener mas de 3 caracteres'),
 body('edad').isInt().withMessage('Debe enviar una edad correcta con números enteros'), controladorPersonas.modificar);
 router.delete('/eliminar', controladorPersonas.eliminar);
+
+router.put('/modificarEliminar',controladorPersonas.modificarEliminar);
+
 module.exports = router;
