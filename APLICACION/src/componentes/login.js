@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, Image, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-export default function login() {
+import "react-native-gesture-handler";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export default function App({ navigation }) {
     const [usuario, setUsuario] = useState(null);
     const [contrasena, setContrasena] = useState(null);
 
@@ -93,7 +100,47 @@ export default function login() {
           <View style={styles.botonRedes}>
               <Button 
                 title="INICIAR SESIÓN" color={"#0D7701"} 
-                onPress={presIniciarSesion}>
+                onPress={
+                    async() =>{
+                        if(!usuario || !contrasena){
+                            console.log("Escriba los datos completos");
+                            Alert.alert("ALERTA", "Escriba los datos completos");
+                          }
+                        else{
+                            try {
+                                const respuesta = await fetch(
+                                    'http://192.168.1.42:4001/api/autenticacion/iniciosesion',{
+                                        method: 'POST',
+                                        headers:{
+                                            accept: 'application/json',
+                                            'Content-Type':'application/json'
+                                        },
+                                        body:  JSON.stringify({
+                                            usuario: usuario,
+                                            contrasena: contrasena
+                                        })
+                                    });
+                                const json = await respuesta.json();
+                                console.log(json);
+                                const data = json.data;
+                
+                                if(!data.token){
+                                  
+                                }else{
+                                  const token = data.token;
+                                  console.log(token);
+                                  await AsyncStorage.setItem('Token', token);
+                                  navigation.navigate('inicio')
+                                }
+                                
+                                Alert.alert("ALERTA", json.msj);
+                               
+                            } catch (error) {
+                                console.error(error);
+                            }
+                        }
+                    }
+                }>
               </Button>
             </View>
             <View style={styles.contenedorBotones}>
@@ -102,7 +149,7 @@ export default function login() {
               </View>
               <View style={styles.boton}>
               <Button title="Registrate" color={"#3A6C96"} fontSize="200"//hover={"#FFFFFF"}
-              onPress={pressToken}
+              onPress={()=>navigation.navigate('registrar')}
               ></Button>
             </View>
           </View>

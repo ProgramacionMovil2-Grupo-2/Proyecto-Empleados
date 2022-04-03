@@ -12,6 +12,8 @@ import usuarios from './src/componentes/usuarios';
 import categoria from './src/componentes/categoria';
 import categoriaMostrar from './src/componentes/categoriaMostrar';
 import proveedores from './src/componentes/proveedores';
+import login from './src/componentes/login';
+import registrar from './src/componentes/registro';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,9 +27,19 @@ export default function Navigation() {
                     headerShown: false,
                 }}>
                 <Stack.Screen
+                    name="login"
+                    component={login}
+                    
+                />
+                   <Stack.Screen
                     name="inicio"
                     component={inicio}
                     
+                />
+                   <Stack.Screen
+                    name="registrar"
+                    component={registrar}
+                   
                 />
                 <Stack.Screen
                     name="personas"

@@ -40,8 +40,8 @@ export default function App({ navigation }) {
             
           })
         });
-        const json = await respuesta.json();
-        console.log(json);
+        //const json = await respuesta.json();
+        //console.log(json);
         Alert.alert("MEDI", "Petición procesada");
       } catch (error) {
         Alert.alert("ALERTA", "Petición procesada");
@@ -69,8 +69,8 @@ export default function App({ navigation }) {
             
           })
         });
-        const json = await respuesta.json();
-        console.log(json);
+        //const json = await respuesta.json();
+        //console.log(json);
         Alert.alert("MEDI", "Petición procesada");
       } catch (error) {
         console.error(error);
@@ -92,9 +92,10 @@ export default function App({ navigation }) {
             'Content-Type': 'application/json'
           },
         });
-        const json = await respuesta.json();
-        console.log(json);
+        //const json = await respuesta.json();
+       // console.log(json);
         Alert.alert("MEDI", "Petición procesada");
+        
       } catch (error) {
         console.error(error);
       }
