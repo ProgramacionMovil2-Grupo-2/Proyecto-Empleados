@@ -1,7 +1,7 @@
 import react from "react";
-import Navigation from "./Navigation";
-import Login from "./src/componentes/login";
-import Pedido from "./src/componentes/pedidosHistorial2";
+
+import Login from "./src/componentes/personas";
+
 
 export default function App() {
   return (
