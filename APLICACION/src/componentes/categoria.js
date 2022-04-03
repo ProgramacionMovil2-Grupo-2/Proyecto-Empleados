@@ -74,7 +74,7 @@ export default function App({ navigation }) {
     <View style={styles.contenedor}>
       <View style={styles.contenedorLogin}>
         <View style={styles.contenedorTitulo}>
-          <Text style={styles.titulo}>CATEGORIAS</Text>
+          <Text style={styles.titulo}>MÓDULO DE CATEGORIAS</Text>
           <TouchableOpacity  style={{ marginLeft: -380, marginTop: -32}} onPress={() => navigation.navigate('inicio')}>
           <View>
             <Feather name='arrow-left' style={{ fontSize: 25 }}

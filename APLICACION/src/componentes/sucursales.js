@@ -146,8 +146,8 @@ export default function App({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.contenedorTitulo}>
-        <Text style={styles.tituloLogin}>SUCURSALES</Text>
-        <TouchableOpacity  style={{ marginLeft: -380, marginTop: -30}} onPress={() => navigation.navigate('inicio')}>
+        <Text style={styles.tituloLogin}>MÓDULO DE SUCURSALES</Text>
+        <TouchableOpacity  style={{ marginLeft: -410, marginTop: -30}} onPress={() => navigation.navigate('inicio')}>
           <View>
             <Feather name='arrow-left' style={{ fontSize: 25 }}
             />

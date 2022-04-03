@@ -91,15 +91,8 @@ export default function App({ navigation }) {
  </View>
  <Text style={styles.tituloBoton2}>COMPRAS</Text>
  </TouchableOpacity >
- <TouchableOpacity style={styles.OpCarrito}
-   onPress={() => navigation.navigate('Productos')}
- >
-   <View>
-  <Feather name='trello' style={{ fontSize: 45, marginLeft: -75}}/>
- </View>
- <Text style={styles.tituloBoton2}>DETALLE COMPRAS</Text>
- </TouchableOpacity >
- <TouchableOpacity style={[styles.OpCarrito, {top: 25, backgroundColor: "#00A41F" }]}
+
+ <TouchableOpacity style={[styles.OpCarrito, {top: 60, backgroundColor: "#00A41F" }]}
    onPress={() => navigation.navigate('login')}
  >
    <View>
@@ -145,7 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#00A41F",
     height: 60,
     position: "relative",
-    top: -10
+    top: -50
   },
   ti: {
     position: "relative",
@@ -215,7 +208,7 @@ const styles = StyleSheet.create({
      borderRadius: 40,
      backgroundColor: '#FFFFFF',
      position: "relative",
-     top: -10,
+     top: -50,
     },
     tituloBoton2:{
       color: '#000000',

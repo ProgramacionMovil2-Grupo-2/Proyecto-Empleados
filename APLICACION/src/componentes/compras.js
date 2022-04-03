@@ -23,7 +23,7 @@ export default function App({ navigation }) {
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.101.9:4001/api/compras/guardarCompras',{
+            'http://192.168.1.42:4001/api/compras/guardarCompras',{
             method: 'POST',
               headers:{
                   accept: 'application/json',
@@ -49,7 +49,7 @@ export default function App({ navigation }) {
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.101.9:4001/api/compras/modificarCompras?id='+id,{
+            'http://192.168.1.42:4001/api/compras/modificarCompras?id='+id,{
             method: 'PUT',
               headers:{
                   accept: 'application/json',
@@ -76,7 +76,7 @@ export default function App({ navigation }) {
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.101.9:4001/api/compras/eliminarCompras?id='+id,{
+            'http://192.168.1.42:4001/api/compras/eliminarCompras?id='+id,{
             method: 'DELETE',
               headers:{
                   accept: 'application/json',
@@ -98,8 +98,8 @@ export default function App({ navigation }) {
     <View style={styles.contenedor}>
       <View style={styles.contenedorLogin}>
         <View style={styles.tilOp}>
-            <Text style={styles.ti}>COMPRAS</Text>
-            <TouchableOpacity  style={{ marginLeft: -380, marginTop: -30}} onPress={() => navigation.navigate('inicio')}>
+            <Text style={styles.ti}>MÓDULO DE COMPRAS</Text>
+            <TouchableOpacity  style={{ marginLeft: 20, marginTop: -50}} onPress={() => navigation.navigate('inicio')}>
           <View>
             <Feather name='arrow-left' style={{ fontSize: 25 }}
             />
@@ -151,12 +151,15 @@ export default function App({ navigation }) {
                 onPress={eliminarCompra}>
               </Button>
           </View>
-          <View style={styles.botonRedes4}>
-              <Button 
-                title="INSERTAR DETALLE" color={"#36465d"} 
-                onPress={eliminarCompra}>
-              </Button>
+        
+            <TouchableOpacity style={[styles.OpCompras, {top: 100, backgroundColor: "#FFFFFF" }]}>
+ 
+           <View>
+          <Feather name='trello' style={{ fontSize: 45, marginLeft: -95}}/>
           </View>
+          <Text style={[styles.tituloBoton2, { color: '#000000', fontSize:19}]}>DETALLE COMPRAS</Text>
+         </TouchableOpacity >
+         
         </View>
       </View>
     </View>
@@ -170,14 +173,15 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     paddingTop: 30,
     position: "relative",
-    top: -40,
+    top: -65,
+    height: 70
   },
   ti: {
-    alignContent: "center",
-    alignItems: "center",
-    fontSize: 40,
-    color: "#020604",
-    marginLeft: 130,
+    color: "#FFFFFF" ,
+    fontSize: 30,
+    fontWeight: "700",
+    left: 80,
+    top: -20
   },
   image: {
     alignItems: 'center',
@@ -249,7 +253,8 @@ const styles = StyleSheet.create({
     //backgroundColor: "#29291f",
     marginBottom: 20,
     paddingTop:30,
-    paddingVertical:30
+    paddingVertical:30,
+    top:-90
   },
   contenedorBotones:{
     flex:1,
@@ -271,7 +276,7 @@ const styles = StyleSheet.create({
   },
   botonRedes:{
     //flex:1,
-    top: 170,
+    top: 90,
     height: 100,
     alignItems:"stretch",
     //margin:5,
@@ -279,19 +284,19 @@ const styles = StyleSheet.create({
   },
   botonRedes2:{
     //flex:1,
-    top: 110,
+    top: 40,
     height: 100,
     alignItems:"stretch",
   },
   botonRedes3:{
     //flex:1,
-    top: 50,
+    top: -10,
     height: 100,
     alignItems:"stretch",
   },
   botonRedes4:{
     //flex:1,
-    top: -8,
+    top: 80,
     height: 100,
     alignItems:"stretch",
   },
@@ -308,5 +313,19 @@ const styles = StyleSheet.create({
     borderStyle:"solid",
     borderColor: "#ced4da",
     borderRadius: 15,
-  }
+  },
+  OpCompras: {
+    flexDirection: "row",
+     width:'100%',
+     height: 60,
+    marginTop: 20,
+    left:0,
+     alignContent: "center",
+     justifyContent: "center",
+     alignItems: "center",
+     borderRadius: 40,
+     backgroundColor: '#FFFFFF',
+     position: "relative",
+     top: 40,
+    },
 });

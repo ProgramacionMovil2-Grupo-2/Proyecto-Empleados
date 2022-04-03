@@ -95,7 +95,7 @@ export default function App({ navigation }) {
         //const json = await respuesta.json();
        // console.log(json);
         Alert.alert("MEDI", "Petición procesada");
-        
+
       } catch (error) {
         console.error(error);
       }
@@ -158,8 +158,8 @@ export default function App({ navigation }) {
   return (
     <View style={styles.container}>
      <View style={styles.contenedorTitulo}>
-        <Text style={styles.titulo}>PROVEEDORES</Text>
-        <TouchableOpacity  style={{ marginLeft: -380, marginTop: -30}} onPress={() => navigation.navigate('inicio')}>
+        <Text style={styles.titulo}>MÓDULO DE PROVEEDORES</Text>
+        <TouchableOpacity  style={{ marginLeft: -420, marginTop: -30}} onPress={() => navigation.navigate('inicio')}>
           <View>
             <Feather name='arrow-left' style={{ fontSize: 25 }}
             />
