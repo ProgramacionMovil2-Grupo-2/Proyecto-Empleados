@@ -55,12 +55,12 @@ export default function App({ navigation }) {
  <Text style={styles.tituloBoton2}>PRODUCTOS</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
-   onPress={() => navigation.navigate('Productos')}
+   onPress={() => navigation.navigate('proveedores')}
  >
  <Text style={styles.tituloBoton2}>PROVEEDORES</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
-   onPress={() => navigation.navigate('Productos')}
+   onPress={() => navigation.navigate('proveedores')}
  >
  <Text style={styles.tituloBoton2}>SUCURSALES</Text>
  </TouchableOpacity >

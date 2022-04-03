@@ -11,7 +11,7 @@ import personas from './src/componentes/personas';
 import usuarios from './src/componentes/usuarios';
 import categoria from './src/componentes/categoria';
 import categoriaMostrar from './src/componentes/categoriaMostrar';
-
+import proveedores from './src/componentes/proveedores';
 
 const Tab = createBottomTabNavigator();
 
@@ -47,6 +47,11 @@ export default function Navigation() {
                  <Stack.Screen
                     name="categoriaMostrar"
                     component={categoriaMostrar}
+                   
+                />
+                  <Stack.Screen
+                    name="proveedores"
+                    component={proveedores}
                    
                 />
                

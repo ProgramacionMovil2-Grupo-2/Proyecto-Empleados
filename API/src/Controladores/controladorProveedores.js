@@ -18,25 +18,29 @@ exports.listarProveedores = async (req, res) => {
 
 exports.guardarProveedores = async (req, res) => {
 
-    const { descripcion } = req.body;
-    if (!descripcion) {
+    const { descripcion, telefono, direccion } = req.body;
+    if(!descripcion || !telefono || !direccion ){
         res.send("Debe enviar los datos completos");
     }
-    else {
+    else{
         await ModeloProveedores.create({
             descripcion: descripcion,
+            telefono : telefono,
+            direccion : direccion,
+          
+        })  .then((data)=>{
+            console.log(data);
+            res.send("Registro almacenado");
         })
-            .then((data) => {
-                console.log(data);
-                res.send("Registro Almacenado");
-            })
-            .catch((error) => {
-                console.log(error);
-                res.send("Error al guardar datos");
-            });
+        .catch((error)=>{
+            console.log(error);
+            res.send("Error al guardar los datos");
+        });
     }
-};
 
+
+    
+};
 exports.modificarProveedores = async (req, res) => {
     console.log(req.query);
     console.log(req.body);
