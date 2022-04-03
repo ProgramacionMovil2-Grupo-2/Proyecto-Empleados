@@ -8,7 +8,6 @@ exports.inicio = (req, res) => {
 
 exports.listar = async (req, res) => {
 
-
     const lista = await ModeloProducto.findAll();
     if (lista.length == 0) {
         res.send("No existen datos");
@@ -129,6 +128,50 @@ exports.modificarProducto = async (req, res) => {
         }
     }
 };
+
+exports.modificarEliminar = async (req, res) => {
+    const validacion = validationResult(req);
+    if (!validacion.isEmpty()) {
+        res.json(validacion.array());
+    }
+    else {
+        console.log(req.query);
+        console.log(req.body);
+
+        const { id } = req.query;
+        const {  estado  } = req.body;
+        if (!id) {
+            res.send("Debe enviar los datos completos");
+        }
+        else {
+
+            var buscarProducto = await ModeloProducto.findOne({
+                where: {
+                    id: id,
+                    estado: true
+                }
+            })
+
+            if (!buscarProducto) {
+                res.send("El id no existe o esta inactivo");
+            }
+            else {
+                buscarProducto.estado = 0;
+                await buscarProducto.save()
+                    .then((data) => {
+                        console.log(data);
+                        res.send("Registro Eliminado");
+                    })
+
+                    .catch((error) => {
+                        console.log(error);
+                        res.send("Error al eliminar los datos o el id de tipo no existe");
+                    })
+            }
+        }
+    }
+};
+
 exports.eliminarProducto = async (req, res) => {
     const validacion = validationResult(req);
     if (!validacion.isEmpty()) {
