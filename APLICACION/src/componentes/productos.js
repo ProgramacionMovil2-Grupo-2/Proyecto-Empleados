@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Pressable, FlatList, ScrollView, StatusBar, ImageComponent, Image, TextInput, Alert, Button, SafeAreaView } from 'react-native';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
+import Feather from 'react-native-vector-icons/Feather';
 
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -27,11 +28,11 @@ export default function App({ navigation }) {
   const presGuardar = async () => {
     if (!idtipo || !fechavencimiento || !nombre || !codigobarras || !impuesto || !precio) {
       console.log("Escriba los datos completos");
-      Alert.alert("MEDI", "Escriba los datos completos");
+      Alert.alert("ALERTA", "Escriba los datos completos");
     } else {
       try {
         const respuesta = await fetch(
-          'http://192.168.1.6:4001/api/productos/guardarProducto', {
+          'http://192.168.1.42:4001/api/productos/guardarProducto', {
           method: 'POST',
           headers: {
             accept: 'application/json',
@@ -51,9 +52,9 @@ export default function App({ navigation }) {
         });
         const json = await respuesta.json();
         console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
         //console.error(error);
       }
     }
@@ -62,11 +63,11 @@ export default function App({ navigation }) {
   const presModificar = async () => {
     if (!idtipo || !fechavencimiento || !nombre || !codigobarras || !impuesto || !precio) {
       console.log("Escriba los datos completos");
-      Alert.alert("MEDI", "Escriba los datos completos");
+      Alert.alert("ALERTA", "Escriba los datos completos");
     } else {
       try {
         const respuesta = await fetch(
-          'http://192.168.1.6:4001/api/productos/modificarProducto?id=' + id, {
+          'http://192.168.1.42:4001/api/productos/modificarProducto?id=' + id, {
           method: 'PUT',
           headers: {
             accept: 'application/json',
@@ -86,9 +87,9 @@ export default function App({ navigation }) {
         });
         const json = await respuesta.json();
         console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
         //console.error(error);
       }
     }
@@ -96,11 +97,11 @@ export default function App({ navigation }) {
   const presEliminar = async () => {
     if (!id) {
       console.log("Escriba los datos completos");
-      Alert.alert("MEDI", "Escriba los datos completos");
+      Alert.alert("ALERTA", "Escriba los datos completos");
     } else {
       try {
         const respuesta = await fetch(
-          'http://192.168.1.6:4001/api/productos/modificarEliminar?id=' + id, {
+          'http://192.168.1.42:4001/api/productos/modificarEliminar?id=' + id, {
           method: 'PUT',
           headers: {
             accept: 'application/json',
@@ -109,9 +110,9 @@ export default function App({ navigation }) {
         });
         const json = await respuesta.json();
         console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
         //console.error(error);
       }
     }
@@ -121,11 +122,11 @@ export default function App({ navigation }) {
   const presBuscar = async () => {
     if (!descripcion) {
       console.log("Escriba los datos completos");
-      Alert.alert("MEDI", "Escriba los datos completos");
+      Alert.alert("ALERTA", "Escriba los datos completos");
     } else {
       try {
         const respuesta = await fetch(
-          'http://192.168.1.6:4001/api/tipos/buscarTipos?filtro=' + descripcion, {
+          'http://192.168.1.42:4001/api/tipos/buscarTipos?filtro=' + descripcion, {
           method: 'GET',
           headers: {
             accept: 'application/json',
@@ -134,7 +135,7 @@ export default function App({ navigation }) {
         });
         const json = await respuesta.json();
         console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
         console.error(error);
       }
@@ -143,7 +144,7 @@ export default function App({ navigation }) {
 
   if (ejecucion == null) {
     try {
-      const response = fetch("http://192.168.1.6:4001/api/tipos/listar")
+      const response = fetch("http://192.168.1.42:4001/api/tipos/listar")
         .then((response) => response.json())
         .then((json) => {
           setinfo(json);
@@ -160,7 +161,13 @@ export default function App({ navigation }) {
   return (
     <SafeAreaView style={styles.contenedor}>
       <View style={styles.contenedorTitulo}>
-        <Text style={styles.tituloLogin}>Productos</Text>
+        <Text style={styles.tituloLogin}>MODULO DE PRODUCTOS</Text>
+        <TouchableOpacity  style={{ marginLeft: -400, marginTop: -40}} onPress={() => navigation.navigate('inicio')}>
+          <View>
+            <Feather name='arrow-left' style={{ fontSize: 25 }}
+            />
+          </View>
+          </TouchableOpacity>
       </View>
       <ScrollView style={styles.scrollView}>
         <View style={styles.contenedorRegistro}>
@@ -305,17 +312,18 @@ const styles = StyleSheet.create({
   contenedorRegistro: {
     alignItems: "stretch",
     justifyContent: 'center',
-    height: '100%',
+    height: '90%',
     width: '100%',
+    top: 50
   },
   contenedorTitulo: {
     backgroundColor: '#00A41F',
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: 80,
+    height: 70,
     width: '100%',
-    top: -20,
+    top: -5,
   },
   contenedorControles: {
     flex: 3,
@@ -323,11 +331,13 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     justifyContent: "center",
     padding: 0,
+    top: 30,
   },
   contenedorLogo: {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    
   },
   sombraControles: {
     shadowColor: '#171717',
@@ -337,8 +347,9 @@ const styles = StyleSheet.create({
   },
   tituloLogin: {
     color: "#FFFFFF",
-    fontSize: 23,
+    fontSize: 30,
     fontWeight: "700",
+    top: -5
   },
   tituloBoton: {
     color: "#FFFFFF",

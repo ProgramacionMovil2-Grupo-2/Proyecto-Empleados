@@ -42,17 +42,16 @@ export default function App({ navigation }) {
   return (
     <View style={styles.contenedor}>
       <View style={styles.contenedorTitulo}>
-        <Text style={styles.titulo}>Productos</Text>
-      </View>
-      <View>
-        <TouchableOpacity onPress={() => {
-          navigation.navigate('Buscar')
-        }}>
-          <View style={styles.back}>
+        <Text style={styles.titulo}>MOSTRAR PRODUCTOS</Text>
+        <TouchableOpacity  style={{ marginLeft: -400, marginTop: 10}} onPress={() => navigation.navigate('producto')}>
+          <View>
             <Feather name='arrow-left' style={{ fontSize: 25 }}
             />
           </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+      </View>
+      <View>
+      
       </View>
 
       <View style={styles.scrollView}>
