@@ -76,7 +76,7 @@ export default function App({ navigation }) {
  <Text style={styles.tituloBoton2}>PROVEEDORES</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
-   onPress={() => navigation.navigate('proveedores')}
+   onPress={() => navigation.navigate('sucursales')}
  >
    <View>
    <AntDesign name='bank' style={{ fontSize: 45, marginLeft: -141}} />
@@ -84,7 +84,7 @@ export default function App({ navigation }) {
  <Text style={styles.tituloBoton2}>SUCURSALES</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
-   onPress={() => navigation.navigate('Productos')}
+   onPress={() => navigation.navigate('sucursales')}
  >
     <View>
   <Feather name='shopping-cart' style={{ fontSize: 45, marginLeft: -160}}/>

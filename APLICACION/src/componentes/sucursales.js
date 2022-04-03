@@ -3,6 +3,14 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, Pressable, Alert, RefreshControl } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import Feather from 'react-native-vector-icons/Feather';
+
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import "react-native-gesture-handler";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App({ navigation }) {
 
@@ -20,7 +28,7 @@ export default function App({ navigation }) {
     } else {
       try {
         const respuesta = await fetch(
-          'http://192.168.1.41:4001/api/sucursales/guardar', {
+          'http://192.168.1.42:4001/api/sucursales/guardar', {
           method: 'POST',
           headers: {
             accept: 'application/json',
@@ -32,8 +40,8 @@ export default function App({ navigation }) {
             telefono: telefono
           })
         });
-        const json = await respuesta.json();
-        console.log(json);
+      //  const json = await respuesta.json();
+       // console.log(json);
         Alert.alert("MEDI", "Petición procesada");
       } catch (error) {
         Alert.alert("ALERTA", "Petición procesada");
@@ -48,7 +56,7 @@ export default function App({ navigation }) {
     } else {
       try {
         const respuesta = await fetch(
-          'http://192.168.1.41:4001/api/sucursales/modificar?id=' + id, {
+          'http://192.168.1.42:4001/api/sucursales/modificar?id=' + id, {
           method: 'PUT',
           headers: {
             accept: 'application/json',
@@ -61,9 +69,9 @@ export default function App({ navigation }) {
             telefono: telefono
           })
         });
-        const json = await respuesta.json();
-        console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+      //  const json = await respuesta.json();
+      //  console.log(json);
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
         console.error(error);
       }
@@ -77,16 +85,16 @@ export default function App({ navigation }) {
     } else {
       try {
         const respuesta = await fetch(
-          'http://192.168.1.41:4001/api/sucursales/eliminar?id=' + id, {
+          'http://192.168.1.42:4001/api/sucursales/eliminar?id=' + id, {
           method: 'DELETE',
           headers: {
             accept: 'application/json',
             'Content-Type': 'application/json'
           },
         });
-        const json = await respuesta.json();
-        console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+       // const json = await respuesta.json();
+      //  console.log(json);
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
         console.error(error);
       }
@@ -96,7 +104,7 @@ export default function App({ navigation }) {
 
   if (ejecucion == null) {
     try {
-      const response = fetch("http://192.168.1.41:4001/api/sucursales/listar")
+      const response = fetch("http://192.168.1.42:4001/api/sucursales/listar")
         .then((response) => response.json())
         .then((json) => {
           setinfo(json);
@@ -135,8 +143,15 @@ export default function App({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.contenedorTitulo}>
-        <Text style={styles.tituloLogin}>Sucursales</Text>
+        <Text style={styles.tituloLogin}>SUCURSALES</Text>
+        <TouchableOpacity  style={{ marginLeft: -380, marginTop: -30}} onPress={() => navigation.navigate('inicio')}>
+          <View>
+            <Feather name='arrow-left' style={{ fontSize: 25 }}
+            />
+          </View>
+          </TouchableOpacity>
       </View>
+      <View style={[styles.contenedorControles, styles.sombraControles]}>
       <TextInput style={styles.input}
         placeholder='Ingrese el id'
         placeholderTextColor={"#546574"}
@@ -161,17 +176,19 @@ export default function App({ navigation }) {
         value={telefono}
         onChangeText={settelefono}
       />
-      <TouchableOpacity style={styles.botonGuardar} onPress={guardar} >
+
+</View>
+      <TouchableOpacity  style={[styles.botonGuardar, styles.botonmodificar2, {top:20}]} onPress={guardar} >
         <Text style={styles.botonText}>Guardar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.botonGuardar} onPress={modificar} >
+      <TouchableOpacity style={[styles.botonGuardar, styles.botonmodificar, {top:20}]} onPress={modificar}>
         <Text style={styles.botonText}>Modificar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.botonGuardar} onPress={eliminar} >
+      <TouchableOpacity style={[styles.botonGuardar, styles.botonmodificar3, {top:20}]} onPress={eliminar}>
         <Text style={styles.botonText}>Eliminar</Text>
       </TouchableOpacity>
 
-      <FlatList style={{ width: "100%" }}
+      <FlatList style={{ width: "90%", top: 45}}
         data={info}
         keyExtractor={(item) => item.id}
        
@@ -185,13 +202,13 @@ export default function App({ navigation }) {
               <View style={styles.contenedorDentro}>
 
                 <TouchableOpacity onPress={() => { id: item.id }}>
-                  <Text style={styles.ciudad}>
+                  <Text style={[styles.ciudad, {fontSize: 16.5}]}>
                     {item.ciudad}
                   </Text>
-                  <Text style={styles.direccion}>
+                  <Text style={[styles.direccion, {fontSize: 16.5}]}>
                     {item.direccion}
                   </Text>
-                  <Text style={styles.telefono}>
+                  <Text style={[styles.telefono, {fontSize: 16.5}]}>
                     {item.telefono}
                   </Text>
                 </TouchableOpacity>
@@ -222,48 +239,82 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: 80,
+    height: 60,
     width: '100%',
-    top: -20,
+    marginTop:10,
+    marginVertical:30,
+    top: 15,
   },
 
   tituloLogin: {
     color: "#FFFFFF",
-    fontSize: 23,
+    fontSize: 30,
     fontWeight: "700",
+    top:  0,
   },
   input: {
-    width: '90%',
+    top: -10,
+    marginTop: 10,
+    width: '100%',
     marginBottom: 7,
     alignContent: "center",
     fontSize: 14,
     borderWidth: 1,
-    borderColor: '#31C02E',
-    height: 35,
+    borderColor: '#000',
+    height: 50,
     color: "black",
     padding: 4,
     textAlign: "center",
     borderRadius: 5,
+    backgroundColor: "#ffffff",
   },
   botonGuardar: {
     paddingTop: 10,
     paddingBottom: 10,
     borderRadius: 5,
     marginBottom: 3,
-    backgroundColor: '#31C02E',
-    width: '40%',
+    width: '40%'
 
+  },
+
+  botonmodificar: {
+    backgroundColor:"#3A6C96",
+  },
+  botonmodificar2: {
+    backgroundColor:"#0D7701",
+  },
+  botonmodificar3: {
+    backgroundColor:"#D51104",
   },
   botonText: {
     color: "#ffffff",
     textAlign: "center",
   },
   contenedorDentro: {
-    backgroundColor: '#31C02E',
+    backgroundColor: "#ffffff",
     padding: 20,
     marginVertical: 8,
     borderRadius: 5,
     justifyContent: "center",
+  },
+  contenedorControles: {
+  
+    width: "90%",
+    alignItems: "stretch",
+    justifyContent:"center",
+    borderWidth: 1,
+    borderColor: "#dedede",
+    borderRadius:25,
+    backgroundColor:"#fff",
+    paddingLeft:10,
+    paddingRight:10,
+    height: 350
+  },
+  sombraControles: {
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
 });
 
