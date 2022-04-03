@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 170,
     width: '100%',
-    top: 4,
+    top: 10,
   },
   contenedorControles: {
     flex: 3,

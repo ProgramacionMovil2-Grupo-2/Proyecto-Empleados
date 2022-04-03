@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     height: "100%",
-    backgroundColor: "#DEFFDA",
+    backgroundColor: '#BAFBB9',
   },
   contenedorTitulo: {
     backgroundColor: '#00A41F',

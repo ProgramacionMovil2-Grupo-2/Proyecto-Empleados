@@ -36,7 +36,7 @@ export default function App({ navigation }) {
    onPress={() => navigation.navigate('personas')}
  >
     <View>
-  <Feather name='users' style={{ fontSize: 45, marginLeft: -160}}/>
+  <Feather name='users' style={{ fontSize: 45, marginLeft: -120}}/>
  </View>
  <Text style={styles.tituloBoton2}>PERSONAS</Text>
  </TouchableOpacity >
@@ -45,7 +45,7 @@ export default function App({ navigation }) {
    onPress={() => navigation.navigate('usuarios')}
  >
   <View>
-  <Feather name='user-plus' style={{ fontSize: 45, marginLeft: -160}}/>
+  <Feather name='user-plus' style={{ fontSize: 45, marginLeft: -125}}/>
  </View>
  <Text style={styles.tituloBoton2}>USUARIOS</Text>
  </TouchableOpacity >
@@ -54,7 +54,7 @@ export default function App({ navigation }) {
    onPress={() => navigation.navigate('categoria')}
  >
      <View>
-   <AntDesign name='database' style={{ fontSize: 45, marginLeft: -141}} />
+   <AntDesign name='database' style={{ fontSize: 45, marginLeft: -115}} />
  </View>
  <Text style={styles.tituloBoton2}>CATEGORIAS</Text>
  </TouchableOpacity >
@@ -63,7 +63,7 @@ export default function App({ navigation }) {
    onPress={() => navigation.navigate('Productos')}
  >
     <View>
-   <AntDesign name='medicinebox' style={{ fontSize: 45, marginLeft: -141}} />
+   <AntDesign name='medicinebox' style={{ fontSize: 45, marginLeft: -115}} />
  </View>
  <Text style={styles.tituloBoton2}>PRODUCTOS</Text>
  </TouchableOpacity >
@@ -71,7 +71,7 @@ export default function App({ navigation }) {
    onPress={() => navigation.navigate('proveedores')}
  >
     <View>
-  <Feather name='truck' style={{ fontSize: 45, marginLeft: -130}}/>
+  <Feather name='truck' style={{ fontSize: 45, marginLeft: -100}}/>
  </View>
  <Text style={styles.tituloBoton2}>PROVEEDORES</Text>
  </TouchableOpacity >
@@ -79,7 +79,7 @@ export default function App({ navigation }) {
    onPress={() => navigation.navigate('sucursales')}
  >
    <View>
-   <AntDesign name='bank' style={{ fontSize: 45, marginLeft: -141}} />
+   <AntDesign name='bank' style={{ fontSize: 45, marginLeft: -115}} />
  </View>
  <Text style={styles.tituloBoton2}>SUCURSALES</Text>
  </TouchableOpacity >
@@ -87,7 +87,7 @@ export default function App({ navigation }) {
    onPress={() => navigation.navigate('sucursales')}
  >
     <View>
-  <Feather name='shopping-cart' style={{ fontSize: 45, marginLeft: -160}}/>
+  <Feather name='shopping-cart' style={{ fontSize: 45, marginLeft: -130}}/>
  </View>
  <Text style={styles.tituloBoton2}>COMPRAS</Text>
  </TouchableOpacity >
@@ -95,9 +95,17 @@ export default function App({ navigation }) {
    onPress={() => navigation.navigate('Productos')}
  >
    <View>
-  <Feather name='trello' style={{ fontSize: 45, marginLeft: -109}}/>
+  <Feather name='trello' style={{ fontSize: 45, marginLeft: -75}}/>
  </View>
  <Text style={styles.tituloBoton2}>DETALLE COMPRAS</Text>
+ </TouchableOpacity >
+ <TouchableOpacity style={[styles.OpCarrito, {top: 25, backgroundColor: "#00A41F" }]}
+   onPress={() => navigation.navigate('login')}
+ >
+   <View>
+  <Feather name='log-out' style={{ fontSize: 45, marginLeft: -95}}/>
+ </View>
+ <Text style={styles.tituloBoton2}>CERRAR SESION</Text>
  </TouchableOpacity >
          
   
@@ -137,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#00A41F",
     height: 60,
     position: "relative",
-    top: -50
+    top: -10
   },
   ti: {
     position: "relative",
@@ -162,7 +170,7 @@ const styles = StyleSheet.create({
   },
   contenedorFuera: {
     top: 10,
-    width: "100%",
+    width: "90%",
     height: 310,
     borderWidth: 2,
     borderRadius: 25,
@@ -171,7 +179,7 @@ const styles = StyleSheet.create({
   },
   contenedorDentro: {
     margin: 10,
-    width: "100%"
+    width: "90%"
   },
 
   progre: {
@@ -197,16 +205,17 @@ const styles = StyleSheet.create({
   },
   OpCarrito: {
     flexDirection: "row",
-     width:'100%',
+     width:'90%',
      height: 60,
     marginTop: 20,
+    left:25,
      alignContent: "center",
      justifyContent: "center",
      alignItems: "center",
      borderRadius: 40,
      backgroundColor: '#FFFFFF',
      position: "relative",
-     top: -50,
+     top: -10,
     },
     tituloBoton2:{
       color: '#000000',
