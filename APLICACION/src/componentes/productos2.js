@@ -1,16 +1,23 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Pressable, FlatList, ScrollView, StatusBar, ImageComponent, Image, TextInput, Alert, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Pressable, FlatList, ScrollView, StatusBar, ImageComponent, Image, TextInput, Alert, Button } from 'react-native';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { withTheme, SearchBar } from 'react-native-elements';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import "react-native-gesture-handler";
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export default function App({ navigation }) {
+export default function registro({ navigation }) {
   const [info, setinfo] = useState([]);
   const [ejecucion, setEjecucion] = useState(null);
   const [id, setid] = useState(null);
@@ -275,12 +282,12 @@ export default function App({ navigation }) {
       </View>
       <View style={styles.botonRedes}>
         <Button style={styles.nombreBoton}
-          title="ELIMINAR" color={"#D51104"} onPress={presEliminar}>
+          title="ELIMINAR" color={"#36465d"} onPress={presEliminar}>
         </Button>
       </View>
       <View style={styles.botonRedes}>
         <Button
-          title="VER" color={"#055b5c"} onPress={() => navigation.navigate('productoMostrar')}>
+          title="VER" color={"#055b5c"} onPress={presModificar}>
         </Button>
       </View>
     </SafeAreaView>
@@ -376,7 +383,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     top: 0,
     height: '100%',
-    width: '40%',
+    width: '100%',
   },
   entradas: {
     flex: 0.3,

@@ -60,7 +60,7 @@ export default function App({ navigation }) {
  </TouchableOpacity >
 
  <TouchableOpacity style={styles.OpCarrito}
-   onPress={() => navigation.navigate('Productos')}
+   onPress={() => navigation.navigate('producto')}
  >
     <View>
    <AntDesign name='medicinebox' style={{ fontSize: 45, marginLeft: -115}} />
