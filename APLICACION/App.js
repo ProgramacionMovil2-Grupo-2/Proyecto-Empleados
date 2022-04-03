@@ -1,12 +1,12 @@
 import react from "react";
 import Navigation from "./Navigation";
-import Login from "./src/componentes/pedidosHistorial2";
+import Login from "./src/componentes/login";
 import Pedido from "./src/componentes/pedidosHistorial2";
 
 export default function App() {
   return (
-    <Navigation></Navigation>
-    //<Login></Login>
+   
+    <Login></Login>
     //Pedido></Pedido>
   
   );
