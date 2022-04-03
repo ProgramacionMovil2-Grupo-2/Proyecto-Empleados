@@ -27,7 +27,7 @@ export default function App({ navigation }) {
     const guardarPersona = async() =>{
       if(!identidad || !nombre || !apellido || !edad || !tipo){
           console.log("Escriba los datos completos");
-          Alert.alert("AVISO", "Escriba los datos completos");
+          Alert.alert("ALERTA", "Escriba los datos completos");
       }else{
           try {
               const respuesta = await fetch(
@@ -45,7 +45,7 @@ export default function App({ navigation }) {
                           tipo: tipo
                       })
                   });
-              Alert.alert("FARMACIA", "Petición procesada");
+              Alert.alert("ALERTA", "Petición procesada");
           } catch (error) {
               console.error(error);
           }
@@ -55,7 +55,7 @@ export default function App({ navigation }) {
   const modificarPersona = async() =>{
     if(!identidad || !nombre || !apellido || !edad || !tipo){
         console.log("Escriba los datos completos");
-        Alert.alert("AVISO", "Escriba los datos completos");
+        Alert.alert("ALERTA", "Escriba los datos completos");
     }else{
         try {
             const respuesta = await fetch(
@@ -74,7 +74,7 @@ export default function App({ navigation }) {
                         tipo: tipo
                     })
                 });
-            Alert.alert("FARMACIA", "Registro modificado");
+            Alert.alert("ALERTA", "Registro modificado");
         } catch (error) {
             console.error(error);
         }
@@ -84,7 +84,7 @@ export default function App({ navigation }) {
 const eliminarPersona = async() =>{
   if(!id){
       console.log("Escriba los datos completos");
-      Alert.alert("AVISO", "Escriba los datos completos");
+      Alert.alert("ALERTA", "Escriba los datos completos");
   }else{
       try {
           const respuesta = await fetch(
@@ -98,7 +98,7 @@ const eliminarPersona = async() =>{
                       id: id
                   })
               });
-          Alert.alert("AVISO", "Registro eliminado");
+          Alert.alert("ALERTA", "Registro eliminado");
       } catch (error) {
           console.error(error);
       }

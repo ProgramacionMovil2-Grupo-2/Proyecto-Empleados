@@ -37,7 +37,7 @@ export default function App({ navigation }) {
         });
         const json = await respuesta.json();
         console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
         Alert.alert("ALERTA", "Categoria Guardada");
       }
@@ -47,7 +47,7 @@ export default function App({ navigation }) {
   const presModificar = async () => {
     if (!id || !descripcion) {
       console.log("Escriba los datos completos");
-      Alert.alert("MEDI", "Escriba los datos completos");
+      Alert.alert("ALERTA", "Escriba los datos completos");
     } else {
       try {
         const respuesta = await fetch(
@@ -63,7 +63,7 @@ export default function App({ navigation }) {
         });
         const json = await respuesta.json();
         console.log(json);
-        Alert.alert("MEDI", "Petición procesada");
+        Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
         Alert.alert("ALERTA", "Categoria Modificada");
         //console.error(error);

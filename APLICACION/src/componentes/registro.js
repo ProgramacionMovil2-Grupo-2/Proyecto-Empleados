@@ -22,7 +22,7 @@ export default function App({ navigation }) {
     const guardarUsuario = async() =>{
         if(!id_personas || !login || !correo || !contrasena){
             console.log("Escriba los datos completos");
-            Alert.alert("AVISO", "Escriba los datos completos");
+            Alert.alert("ALERTA", "Escriba los datos completos");
         }else{
             try {
                 const respuesta = await fetch(
@@ -58,7 +58,7 @@ export default function App({ navigation }) {
                 };
 
                 fetch('http://192.168.1.2:4001/api/usuarios/guardarUsuario',request)*/
-                Alert.alert("AVISO", "Registro almacenado");
+                Alert.alert("ALERTA", "Registro almacenado");
             } catch (error) {
                 console.error(error);
             }

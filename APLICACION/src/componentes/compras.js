@@ -35,7 +35,7 @@ export default function App({ navigation }) {
                       })
                   });
                   console.log("Datos Compra Guardado");
-                  Alert.alert("AVISO", "Datos Compra Almacenado");
+                  Alert.alert("ALERTA", "Datos Compra Almacenado");
           } catch (error) {
               console.error(error);
           }
@@ -62,7 +62,7 @@ export default function App({ navigation }) {
                       })
                   });
                   console.log("Datos Compra Modificado");
-                  Alert.alert("AVISO", "Datos Compra Modificado");
+                  Alert.alert("ALERTA", "Datos Compra Modificado");
           } catch (error) {
               console.error(error);
           }
@@ -87,7 +87,7 @@ export default function App({ navigation }) {
                       })
                   });
                   console.log("Datos Compra Eliminado");
-                  Alert.alert("AVISO", "Datos Compra Eliminado");
+                  Alert.alert("ALERTA", "Datos Compra Eliminado");
           } catch (error) {
               console.error(error);
           }
