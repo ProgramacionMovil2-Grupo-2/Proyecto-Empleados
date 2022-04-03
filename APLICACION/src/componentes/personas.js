@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, Button,FlatList, ActivityIndicator, TouchableOpacity, Pressable, ImageComponent,Image, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Button,FlatList, ActivityIndicator, TouchableOpacity, Pressable, ImageComponent,Image, TextInput, Alert} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -25,48 +25,19 @@ export default function App({ navigation }) {
     const [] = useState(null);
 
     const guardarPersona = async() =>{
-        if(!identidad || !nombre || !apellido || !edad || !tipo){
-            console.log("Escriba los datos completos");
-            Alert.alert("AVISO", "Escriba los datos completos");
-        }else{
-            try {
-                const respuesta = await fetch(
-                    'http://192.168.1.42:4001/api/personas/guardar',{
-                        method: 'POST',
-                        headers:{
-                            accept: 'application/json',
-                            'Content-Type':'application/json'
-                        },
-                        body:  JSON.stringify({
-                            identidad: identidad,
-                            nombre: nombre,
-                            apellido: apellido,
-                            edad: edad,
-                            tipo: tipo
-                        })
-                    });
-                Alert.alert("AVISO", "Registro almacenado");
-            } catch (error) {
-                console.error(error);
-            }
-        }
-    }
-
-    const modificarPersona = async() =>{
       if(!identidad || !nombre || !apellido || !edad || !tipo){
           console.log("Escriba los datos completos");
           Alert.alert("AVISO", "Escriba los datos completos");
       }else{
           try {
               const respuesta = await fetch(
-                  'http://192.168.1.42:4001/api/personas/modificar?id='+id,{
-                      method: 'PUT',
+                  'http://192.168.1.42:4001/api/personas/guardar',{
+                      method: 'POST',
                       headers:{
                           accept: 'application/json',
                           'Content-Type':'application/json'
                       },
                       body:  JSON.stringify({
-                          id: id,
                           identidad: identidad,
                           nombre: nombre,
                           apellido: apellido,
@@ -74,37 +45,65 @@ export default function App({ navigation }) {
                           tipo: tipo
                       })
                   });
-              Alert.alert("AVISO", "Registro modificado");
+              Alert.alert("FARMACIA", "Petición procesada");
           } catch (error) {
               console.error(error);
           }
       }
   }
 
-  const eliminarPersona = async() =>{
-    if(!id){
+  const modificarPersona = async() =>{
+    if(!identidad || !nombre || !apellido || !edad || !tipo){
         console.log("Escriba los datos completos");
         Alert.alert("AVISO", "Escriba los datos completos");
     }else{
         try {
             const respuesta = await fetch(
-                'http://192.168.1.42:4001/api/personas/modificarEliminar?id='+id,{
+                'http://192.168.1.42:4001/api/personas/modificar?id='+id,{
                     method: 'PUT',
                     headers:{
                         accept: 'application/json',
                         'Content-Type':'application/json'
                     },
                     body:  JSON.stringify({
-                        id: id
+                        id: id,
+                        identidad: identidad,
+                        nombre: nombre,
+                        apellido: apellido,
+                        edad: edad,
+                        tipo: tipo
                     })
                 });
-            Alert.alert("AVISO", "Registro eliminado");
+            Alert.alert("FARMACIA", "Registro modificado");
         } catch (error) {
             console.error(error);
         }
     }
-  }
+}
 
+const eliminarPersona = async() =>{
+  if(!id){
+      console.log("Escriba los datos completos");
+      Alert.alert("AVISO", "Escriba los datos completos");
+  }else{
+      try {
+          const respuesta = await fetch(
+              'http://192.168.1.2:4001/api/personas/modificarEliminar?id='+id,{
+                  method: 'PUT',
+                  headers:{
+                      accept: 'application/json',
+                      'Content-Type':'application/json'
+                  },
+                  body:  JSON.stringify({
+                      id: id
+                  })
+              });
+          Alert.alert("AVISO", "Registro eliminado");
+      } catch (error) {
+          console.error(error);
+      }
+  }
+}
   return (    
     <View style={styles.contenedor}>
       <View style={styles.contenedorLogin}>

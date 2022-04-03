@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 
+
 import "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator();
@@ -24,7 +25,7 @@ export default function App({ navigation }) {
 <View style={styles.entrega1}>
 
 <View style={styles.tilOp}>
-  <Text style={styles.ti}>INICIO</Text>
+  <Text style={styles.ti}>FARMACIA</Text>
   <View style={styles.opciones}>
    
   </View>
@@ -34,44 +35,68 @@ export default function App({ navigation }) {
  <TouchableOpacity style={styles.OpCarrito}
    onPress={() => navigation.navigate('personas')}
  >
+    <View>
+  <Feather name='users' style={{ fontSize: 45, marginLeft: -160}}/>
+ </View>
  <Text style={styles.tituloBoton2}>PERSONAS</Text>
  </TouchableOpacity >
 
  <TouchableOpacity style={styles.OpCarrito}
    onPress={() => navigation.navigate('usuarios')}
  >
+  <View>
+  <Feather name='user-plus' style={{ fontSize: 45, marginLeft: -160}}/>
+ </View>
  <Text style={styles.tituloBoton2}>USUARIOS</Text>
  </TouchableOpacity >
 
  <TouchableOpacity style={styles.OpCarrito}
    onPress={() => navigation.navigate('categoria')}
  >
+     <View>
+   <AntDesign name='database' style={{ fontSize: 45, marginLeft: -141}} />
+ </View>
  <Text style={styles.tituloBoton2}>CATEGORIAS</Text>
  </TouchableOpacity >
 
  <TouchableOpacity style={styles.OpCarrito}
    onPress={() => navigation.navigate('Productos')}
  >
+    <View>
+   <AntDesign name='medicinebox' style={{ fontSize: 45, marginLeft: -141}} />
+ </View>
  <Text style={styles.tituloBoton2}>PRODUCTOS</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
    onPress={() => navigation.navigate('proveedores')}
  >
+    <View>
+  <Feather name='truck' style={{ fontSize: 45, marginLeft: -130}}/>
+ </View>
  <Text style={styles.tituloBoton2}>PROVEEDORES</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
    onPress={() => navigation.navigate('proveedores')}
  >
+   <View>
+   <AntDesign name='bank' style={{ fontSize: 45, marginLeft: -141}} />
+ </View>
  <Text style={styles.tituloBoton2}>SUCURSALES</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
    onPress={() => navigation.navigate('Productos')}
  >
+    <View>
+  <Feather name='shopping-cart' style={{ fontSize: 45, marginLeft: -160}}/>
+ </View>
  <Text style={styles.tituloBoton2}>COMPRAS</Text>
  </TouchableOpacity >
  <TouchableOpacity style={styles.OpCarrito}
    onPress={() => navigation.navigate('Productos')}
  >
+   <View>
+  <Feather name='trello' style={{ fontSize: 45, marginLeft: -109}}/>
+ </View>
  <Text style={styles.tituloBoton2}>DETALLE COMPRAS</Text>
  </TouchableOpacity >
          
@@ -112,13 +137,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#00A41F",
     height: 60,
     position: "relative",
-    top: -90
+    top: -50
   },
   ti: {
     position: "relative",
     top: 10,
     fontSize: 25,
-    left: 200,
+    left: 177,
   },
   avanceTitulo: {
     backgroundColor: "#31C02E",
@@ -174,18 +199,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
      width:'100%',
      height: 60,
-    marginTop: 10,
+    marginTop: 20,
      alignContent: "center",
      justifyContent: "center",
      alignItems: "center",
      borderRadius: 40,
      backgroundColor: '#FFFFFF',
      position: "relative",
-     top: -90,
+     top: -50,
     },
     tituloBoton2:{
       color: '#000000',
-      fontSize: 15,
+      fontSize: 25,
       fontWeight: "600",
     },
     total: {
