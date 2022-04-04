@@ -88,7 +88,7 @@ exports.modificarProducto = async (req, res) => {
         console.log(req.body);
 
         const { id } = req.query;
-        const { nombre, fechavencimiento, codigobarras, descripcion, impuesto, precio, idtipo, imagen, estado  } = req.body;
+        const { nombre, fechavencimiento, codigobarras, descripcion, impuesto, precio, idtipo } = req.body;
         if (!id || !nombre || !fechavencimiento || !codigobarras || !impuesto || !idtipo || !precio) {
             res.send("Debe enviar los datos completos");
         }
@@ -112,8 +112,6 @@ exports.modificarProducto = async (req, res) => {
                 buscarProducto.impuesto = impuesto;
                 buscarProducto.precio = precio;
                 buscarProducto.idtipo = idtipo;
-                buscarProducto.imagen = imagen;
-                buscarProducto.estado = estado;
                 await buscarProducto.save()
                     .then((data) => {
                         console.log(data);
@@ -156,7 +154,7 @@ exports.modificarEliminar = async (req, res) => {
                 res.send("El id no existe o esta inactivo");
             }
             else {
-                buscarProducto.estado = 0;
+                buscarProducto.estado = false;
                 await buscarProducto.save()
                     .then((data) => {
                         console.log(data);
@@ -206,3 +204,29 @@ exports.eliminarProducto = async (req, res) => {
         }
     }
 };
+
+exports.guardar = async(req, res) => {
+    console.log(req.body);
+
+    const { idtipo, nombre, fechavencimiento, codigobarras, impuesto, precio } = req.body;
+    if (!idtipo || !nombre || !fechavencimiento || !codigobarras || !impuesto || !precio || !req.files) {
+        res.send("Debe enviar los datos obligatorios");
+    } else {
+        
+    try {
+        const producto = await ModeloProducto.create({
+       
+            ...req.body,
+            imagen: req.files[0].filename,
+          
+        
+         
+        });
+    
+        res.json({ producto });
+      } catch (error) {
+        res.json({ error: error.message });
+      }
+    
+       }
+}; 

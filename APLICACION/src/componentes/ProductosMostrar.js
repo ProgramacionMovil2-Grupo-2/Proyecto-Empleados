@@ -25,7 +25,7 @@ export default function App({ navigation }) {
 
   if (ejecucion == null) {
     try {
-      const response = fetch("http://192.168.1.6:4001/api/productos/listar")
+      const response = fetch("http://192.168.1.42:4001/api/productos/listar")
         .then((response) => response.json())
         .then((json) => {
           setinfo(json);

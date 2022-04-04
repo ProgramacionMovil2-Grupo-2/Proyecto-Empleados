@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Pressable, FlatList, ScrollView, StatusBar, ImageComponent, Image, TextInput, Alert, Button, SafeAreaView } from 'react-native';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 import Feather from 'react-native-vector-icons/Feather';
@@ -7,6 +7,8 @@ import Feather from 'react-native-vector-icons/Feather';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import "react-native-gesture-handler";
+import { launchImageLibraryAsync, MediaTypeOptions, requestCameraPermissionsAsync } from 'expo-image-picker';
+
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +26,24 @@ export default function App({ navigation }) {
   const [idtipo, setidtipo] = useState(null);
   const [imagen, setimagen] = useState(null);
   const [estado, setestado] = useState(null);
+
+  const [tienePermiso, settienePermiso] = useState(false)
+  async function abrirGaleria() {
+    const res = await launchImageLibraryAsync({
+      mediaTypes: MediaTypeOptions.Images
+    })
+    setimagen(res)
+    console.log(res)
+
+  }
+  function solicitarPermisos() {
+    requestCameraPermissionsAsync().then(res => {
+      settienePermiso(res.granted)
+    })
+  }
+  useEffect(() => {
+    solicitarPermisos();
+  })
 
   const presGuardar = async () => {
     if (!idtipo || !fechavencimiento || !nombre || !codigobarras || !impuesto || !precio) {
@@ -48,16 +68,31 @@ export default function App({ navigation }) {
             idtipo: idtipo,
             imagen: imagen,
             estado: estado
-          })
+          }),
         });
-        const json = await respuesta.json();
-        console.log(json);
+       // const json = await respuesta.json();
+       // console.log(json);
         Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
-        Alert.alert("ALERTA", "Petición procesada");
-        //console.error(error);
+        //Alert.alert("ALERTA", "Petición procesada");
+        console.error(error);
       }
     }
+    let name = imagen.uri.split("ImagePicker/")[1]
+    body.append("img", { name, type: imagen.type + "/" + name.split(".")[1], uri: imagen.uri })
+    console.log(imagen)
+
+    try {
+      const res = await fetch(axios.defaults.baseURL + '/productos/guardar', { body, method: "post", headers: { "Content-Type": "multipart/form-data" } })
+
+      Alert.alert('ALERTA', "Registro Almacenado")
+
+
+
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   const presModificar = async () => {
@@ -85,12 +120,12 @@ export default function App({ navigation }) {
             estado: estado
           })
         });
-        const json = await respuesta.json();
-        console.log(json);
+        //const json = await respuesta.json();
+        //console.log(json);
         Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
-        Alert.alert("ALERTA", "Petición procesada");
-        //console.error(error);
+        
+        console.error(error);
       }
     }
   }
@@ -108,12 +143,12 @@ export default function App({ navigation }) {
             'Content-Type': 'application/json'
           },
         });
-        const json = await respuesta.json();
-        console.log(json);
+        //const json = await respuesta.json();
+        //console.log(json);
         Alert.alert("ALERTA", "Petición procesada");
       } catch (error) {
-        Alert.alert("ALERTA", "Petición procesada");
-        //console.error(error);
+       // Alert.alert("ALERTA", "Petición procesada");
+        console.error(error);
       }
     }
   }
@@ -155,6 +190,17 @@ export default function App({ navigation }) {
       setEjecucion(false);
       console.error(error);
     }
+  }
+
+  if (!tienePermiso) {
+    return (
+      <View>
+        <Text style={{ fontSize: 25, fontWeight: '800', color: 'blue' }}>No tiene permiso</Text>
+        <TouchableOpacity onPress={solicitarPermisos} style={[styles.button, { backgroundColor: '#08D99B90' }]}   >
+          <Text style={{ textAlign: 'center', fontSize: 17, fontWeight: '500', color: 'white' }}>Volver a solicitar permisos</Text>
+        </TouchableOpacity>
+      </View>
+    )
   }
 
 
@@ -247,15 +293,24 @@ export default function App({ navigation }) {
                 style={styles.entradas}
               >
               </TextInput>
-              <Text style={styles.textinput}>   Imagen:</Text>
-              <TextInput
-                value={imagen}
-                onChangeText={setimagen}
+              
+              <View style={{ flexDirection: 'row', marginLeft: 10 }}>
+                <TouchableOpacity onPress={abrirGaleria} style={[styles.button, { backgroundColor: '#08D99B90' }]}   >
+                  <Text style={{ textAlign: 'center', fontSize: 18, fontWeight: '800', color: 'black' }}>Seleccionar imagen</Text>
 
-                placeholder="Ej. "
-                style={styles.entradas}
-              >
-              </TextInput>
+                </TouchableOpacity>
+
+
+              </View>
+              <View style={{ marginTop: 20, marginLeft: 127 }}>
+                {
+                  imagen
+                    ? (
+                      <Image source={{ uri: imagen.uri, width: 200, height: 200, }} />
+                    )
+                    : null
+                }
+              </View>
 
               <Text style={styles.textinput}>   Estado:</Text>
               <TextInput
@@ -387,7 +442,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     top: 0,
     height: '100%',
-    width: '40%',
+    width: '80%',
   },
   entradas: {
     flex: 0.3,

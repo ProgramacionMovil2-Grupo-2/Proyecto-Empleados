@@ -283,30 +283,27 @@ on dv.idProducto=p.id inner join tipos as t on p.idtipo=t.id where dv.idCarrito=
 insert into tipos (descripcion) values ('Cicatrizantes'),('Analgesico'),('Vitaminas'),('Proteccion');
 
 insert into Personas ( identidad,nombre,apellido,edad,telefono,rtn,direccion,estado,imagen,tipo) 
-values('0318200402610','Sandra','Calderon','21','33668853',null,'Siguatepeque',true,null,'EM'),
+values ('1111111111111','ADMIN','ADMIN','21','99999999',null,'Desconocido',true,null,'EM'),
+('0318200402610','Sandra','Calderon','21','33668853',null,'Siguatepeque',true,null,'EM'),
 ('1212200100016','Daniela','Vasquez','21','99999999',null,'Marcala',true,null,'EM'),
-('1111111111111','ADMIN','ADMIN','21','99999999',null,'Desconocido',true,null,'EM'),
 ('0310200100100','Carlos','Flores','25','99012345',null,'Siguatepeque',true,null,'EM');
 
 insert into Usuarios (id_personas,login,correo,contrasena,estado,pin) values 
-('1','Sandra','sandra21jackelin@gmail.com','12345678','1','1234'),
-('2','Daniela','danielamejia405@gmail.com','12345678','1','1234'),
-('3','Admin','admin@gmail.com','12345678','1','1234');
+('2','scalderon','calderon21j@gmail.com','$2b$10$7ZCapnnQvlR1a7Vp1fh5k.kxQcBqw9QbzH3jNp5HTS3S1AWx.kXbe','ACTIVO','2022');
 
-select * from Usuarios
+select * from Personas;
+select * from Usuarios;
+select * from Productos;
+select * from Proveedores;
+select * from sucursal;
+select * from compras;
+select * from detalleCompra;
 
 
 insert into Productos (nombre,fechavencimiento,codigobarras,descripcion, impuesto, precio,idtipo,imagen, estado) values
- ('Neobol2','2022-01-11','1000001',null,'15','190','1','http://localhost:4001/usuario/img/img-1648009386154-989785856image.jpeg','1'),
- ('Emulsion Scott','2022-01-11','1000002',null,'15','150','3','http://192.168.1.39:4001/usuario/img/img-1648009357110-529719040image.jpeg','1'),
  ('Panadol','2022-01-11','1000003',null,'15','10','2','http://192.168.1.39:4001/usuario/img/img-1648009393523-774329275image.jpeg','1'),
  ('Sudagrip','2022-01-11','1000004',null,'15','10','2','http://192.168.1.39:4001/usuario/img/img-1648009406312-221969336image.jpeg','1'),
- ('Mascarillas','2022-01-11','1000005',null,'15','100','4','http://192.168.1.39:4001/usuario/img/img-1648009375647-515855824image.jpeg','1'),
- ('Gasas','2022-01-11','1000006',null,'15','50','4','http://192.168.1.39:4001/usuario/img/img-1648009362506-228086519image.jpeg','1'),
- ('Acetaminofen','2022-01-11','1000007',null,'15','70','2','http://192.168.1.39:4001/usuario/img/img-1648009339195-237383900image.webp','1'),
- ('Alcohol Clinico','2022-01-11','1000008',null,'15','80','4','http://192.168.1.39:4001/usuario/img/img-1648009349809-857909128image.webp','1'),
- ('Jarabe','2022-01-11','1000009',null,'15','100','2','http://192.168.1.39:4001/usuario/img/img-1648009369503-953969632image.jpeg','1'),
- ('Povidone','2022-01-11','1000010',null,'15','130','1','http://192.168.1.39:4001/usuario/img/img-1648009399820-255465088image.jpeg','1');
+ ('Mascarillas','2022-01-11','1000005',null,'15','100','4','http://192.168.1.39:4001/usuario/img/img-1648009375647-515855824image.jpeg','1');
  
  insert into Productos (nombre,fechavencimiento,codigobarras,descripcion, impuesto, precio,idtipo,imagen, estado) values
  ('Jabon Asepxia','2022-01-11','1000011',null,'15','190','1','http://192.168.1.7:4001/usuario/img/img-1648009386154-989785856image.jpeg','1');

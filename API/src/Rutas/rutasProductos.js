@@ -2,6 +2,7 @@ const { Router } = require('express');
 const controladorProductos = require('../controladores/controladorProductos');
 const { body, query } = require('express-validator');
 const router = Router();
+const {upload} = require('../config/multer')
 router.get('/', controladorProductos.inicio);
 router.get('/listar', controladorProductos.listar);
 router.get('/buscarProducto', 
@@ -16,10 +17,13 @@ controladorProductos.guardarProducto );
 router.put('/modificarProducto', 
 body('nombre').isLength({max:45}).withMessage('El nombre del producto debe tener 45 o menos caracteres'),
 body('codigobarras').isLength({max:45}).withMessage('El codigo de barras del proveedor debe tener 45 o menos caracteres'),
-body('imagen').isLength({max:250}).withMessage('La direccion de la imagen debe tener 250 o menos caracteres'),
+body('imagen').isLength({max:250}).withMessage('La direccion de la imagen debe tener 250 o menos caracteres'), upload.array('img'),
 controladorProductos.modificarProducto);
 router.put('/modificarEliminar', 
 controladorProductos.modificarEliminar);
 router.delete('/eliminarProducto', 
 controladorProductos.eliminarProducto);
+router.post('/guardar', 
+upload.array('img'),
+controladorProductos.guardarProducto );
 module.exports=router;

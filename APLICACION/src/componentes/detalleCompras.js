@@ -25,7 +25,7 @@ export default function App({ navigation }) {
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.101.9:4001/api/detallecompra/guardarDetalleCompras',{
+            'http://192.168.1.42:4001/api/detallecompra/guardarDetalleCompras',{
             method: 'POST',
               headers:{
                   accept: 'application/json',
@@ -53,7 +53,7 @@ export default function App({ navigation }) {
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.101.9:4001/api/detallecompra/modificarDetalleCompras?id='+id,{
+            'http://192.168.1.42:4001/api/detallecompra/modificarDetalleCompras?id='+id,{
             method: 'PUT',
               headers:{
                   accept: 'application/json',
@@ -82,7 +82,7 @@ export default function App({ navigation }) {
     }else{
       try {
           const respuesta = await fetch(
-            'http://192.168.101.9:4001/api/detallecompra/eliminarDetalleCompras?id='+id,{
+            'http://192.168.1.42:4001/api/detallecompra/eliminarDetalleCompras?id='+id,{
             method: 'DELETE',
               headers:{
                   accept: 'application/json',

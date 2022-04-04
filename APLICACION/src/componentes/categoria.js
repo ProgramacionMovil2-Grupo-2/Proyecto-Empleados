@@ -21,7 +21,7 @@ export default function App({ navigation }) {
   const presGuardar = async () => {
     if (!descripcion) {
       console.log("Escriba los datos completos");
-      Alert.alert("MEDI", "Escriba los datos completos");
+      Alert.alert("ALERTA", "Escriba los datos completos");
     } else {
       try {
         const respuesta = await fetch(

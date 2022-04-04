@@ -88,7 +88,7 @@ const eliminarPersona = async() =>{
   }else{
       try {
           const respuesta = await fetch(
-              'http://192.168.1.2:4001/api/personas/modificarEliminar?id='+id,{
+              'http://192.168.1.42:4001/api/personas/modificarEliminar?id='+id,{
                   method: 'PUT',
                   headers:{
                       accept: 'application/json',

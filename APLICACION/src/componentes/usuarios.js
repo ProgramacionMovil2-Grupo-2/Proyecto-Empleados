@@ -72,7 +72,7 @@ export default function App({ navigation }) {
       }else{
           try {
               const respuesta = await fetch(
-                  'http://192.168.1.2:4001/api/usuarios/modificarUsuario?id='+id,{
+                  'http://192.168.1.42:4001/api/usuarios/modificarUsuario?id='+id,{
                       method: 'PUT',
                       headers:{
                           accept: 'application/json',
@@ -104,7 +104,7 @@ export default function App({ navigation }) {
     }else{
         try {
             const respuesta = await fetch(
-                'http://192.168.1.2:4001/api/usuarios/modificarEliminar?id='+id,{
+                'http://192.168.1.42:4001/api/usuarios/modificarEliminar?id='+id,{
                     method: 'PUT',
                     headers:{
                         accept: 'application/json',
