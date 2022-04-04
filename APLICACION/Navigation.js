@@ -19,6 +19,7 @@ import compras from './src/componentes/compras';
 import detallecompras from './src/componentes/detalleCompras';
 import productoMostrar from './src/componentes/ProductosMostrar';
 import producto from './src/componentes/productos';
+import vercompras from './src/componentes/verCompra';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,6 +72,7 @@ export default function Navigation() {
                     component={proveedores}
                    
                 />
+               
                    <Stack.Screen
                     name="sucursales"
                     component={sucursales}
@@ -96,7 +98,11 @@ export default function Navigation() {
                     component={producto}
                    
                 />
-               
+                 <Stack.Screen
+                    name="vercompras"
+                    component={vercompras}
+                   
+                />
                
                  
                  

@@ -158,6 +158,7 @@ export default function App({ navigation }) {
                 onPress={guardarDetalleCompra}>
               </Button>
           </View>
+          
           <View style={styles.botonRedes2}>
               <Button 
                 title="MODIFICAR" color={"#3A6C96"}
@@ -170,6 +171,13 @@ export default function App({ navigation }) {
                 onPress={eliminarDetalleCompra}>
               </Button>
           </View>
+          <View style={styles.botonRedes4}>
+              <Button
+                title="VER DETALLE VENTAS" color={"#36465d"} 
+                onPress={() => navigation.navigate('vercompras')}>
+              </Button>
+          </View>
+         
           </View>
           
         </View>
@@ -266,6 +274,11 @@ const styles = StyleSheet.create({
     alignItems:"stretch",
   },
   botonRedes3:{
+    height: 100,
+    alignItems:"stretch",
+  },
+  botonRedes4:{
+    top:-60,
     height: 100,
     alignItems:"stretch",
   },

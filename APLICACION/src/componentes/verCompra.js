@@ -33,7 +33,7 @@ export default function App({ navigation }) {
   if (ejecucion == null) {
     try {
         const buscardor=2;
-        const response = fetch("http://192.168.101.9:4001/api/verCompra/listarverCompra")
+        const response = fetch("http://192.168.1.42:4001/api/verCompra/listarverCompra")
         .then((response) => response.json())
         .then((json) => {
           setinfo(json);
@@ -89,6 +89,12 @@ export default function App({ navigation }) {
 
     <View style={styles.tilOp}>
       <Text style={styles.ti}>Detalle Compras</Text>
+      <TouchableOpacity  style={{ marginLeft: 20, marginTop: -30}} onPress={() => navigation.navigate('detallecompras')}>
+          <View>
+            <Feather name='arrow-left' style={{ fontSize: 25 }}
+            />
+          </View>
+          </TouchableOpacity>
     </View>
         <FlatList
             style={styles.productos}
@@ -182,7 +188,7 @@ const styles = StyleSheet.create({
   },
   contenedorFuera: {
     top: 70,
-    height: 200,
+    height: 230,
     width: 425,
     marginLeft: 17,
     borderWidth: 1,
@@ -191,7 +197,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   contenedorDentro: {
-    height: 180,
+    height: 250,
     marginLeft: 25,
   },
   id: {
